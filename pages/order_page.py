@@ -69,6 +69,37 @@ class YaScooterOrderPage(YaScooterBasePage):
     def order_status(self):
         return self.find_element(locators.show_status_button).click()
 
+
+    @allure.step('Проверка на некорректно заполненное имя')
+    def order_page_first_name_incorrect_show_error(self):
+        return self.find_element(locators.incorrect_first_name_message).is_displayed()
+    
+    @allure.step('Проверка на некорректно заполненную фамилию')
+    def order_page_last_name_incorrect_show_error(self):
+        return self.find_element(locators.incorrect_last_name_message).is_displayed()
+
+
+
+    @allure.step('Проверка на некорректно заполненный адрес')
+    def order_page_address_input_incorrect_show_error(self):
+        return self.find_element(locators.incorrect_adress_message).is_displayed()
+
+    @allure.step('Проверка на некорректно заполненный телефон')
+    def order_page_telephone_number_input_incorrect_show_error(self):
+        return self.find_element(locators.incorrect_telephone_message).is_displayed()
+    
+    @allure.step('Проверка что при корректных заполненных данных на этапе "Для кого самокат", нажатии "Далее" происходит переход на следующий этап "Про аренду"')
+    def order_page_go_to_choose_scooter_user_data_correct_open_about_rent(self):
+        return self.find_element(locators.order_button).is_displayed()
+    
+    @allure.step('Проверка на некорректно заполненное метро')
+    def order_page_subway_input_empty_show_error_message(self):
+        return self.find_element(locators.incorrec_subway_message).is_displayed()
+
+    @allure.title('Проверка что при корреткных заполненных данных на этапе "Про аренду", нажатии на кнопку "Заказать", происходит оформление заказа, открывается модальное окно с подтверждением об успешном создании заказа и присвоенным номером')
+    def order_page_about_rent_input_correct_data_and_order_show_order_number(self):
+        return self.find_element(locators.order_completed_info).is_displayed()
+
     @allure.step('Заполнить данные на этапе "Для кого самокат"')
     def fill_user_data(self, data_set: dict):
         self.input_first_name(data_set['first_name'])
@@ -84,3 +115,7 @@ class YaScooterOrderPage(YaScooterBasePage):
         for option in data_set['colour']:
             self.input_colour_checkboxes(option)
         self.input_comment_for_courier_field(data_set['comment'])
+
+    
+    
+    

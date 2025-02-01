@@ -4,7 +4,6 @@ import pytest
 from selenium import webdriver
 from pages.main_page import YaScooterMainPage
 from utils.urls import Urls
-import utils.locators as locators
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
